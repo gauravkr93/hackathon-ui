@@ -19,7 +19,7 @@ export class ImageSectionComponent implements OnInit {
     this.height = image.scrollHeight;
   }
 
-  
+  @HostListener('document:mousemove', ['$event'])
   onMouseMove(e) {
     var x = (e.clientX/(document.getElementById('mydiv').scrollWidth))*document.getElementById('image').scrollWidth;
     var y = (e.clientY/(document.getElementById('mydiv').scrollHeight))*document.getElementById('image').scrollHeight;

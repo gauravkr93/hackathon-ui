@@ -1,4 +1,4 @@
-<div (onmousemove)="mousemove($event)">
+<div (document:mousemove)="onMouseMove($event)">
         <img id="image" [src]="imgURL" width=500 height=500 class="brdr-img" *ngIf="imgURL">
 </div>
    <!-- <head>
