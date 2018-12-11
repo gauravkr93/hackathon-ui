@@ -46,15 +46,16 @@ export class ImageSectionComponent implements OnInit, OnChanges {
   ngAfterViewChecked() {
 
     if (document.getElementById('image')) {
+      // GET the natural dimensions of the image
       this.natualImgWidth = document.querySelector('img').naturalWidth;
       this.naturalImgHeight = document.querySelector('img').naturalHeight;
-
+      // get the rendered image dimensions
       this.width = document.getElementById('image').clientWidth;
       this.height = document.getElementById('image').clientHeight;
-
+      // calculate the scaling ratio for image
       this.width_ratio = this.width / 500;
       this.height_ratio = this.height / 500;
-
+      // width and height for the scaled image
       this.scale_width = 500 / this.natualImgWidth;
       this.scale_height = 500 / this.naturalImgHeight;
 
@@ -62,7 +63,7 @@ export class ImageSectionComponent implements OnInit, OnChanges {
       this.scaleHeightRatio = this.naturalImgHeight / 500;
 
       this.scale = Math.min(this.scale_width, this.scale_height);
-
+      // Finally resized image dimensions
       this.imgReWidth = this.natualImgWidth * this.scale;
       this.imgReHeight = this.naturalImgHeight * this.scale;
 
