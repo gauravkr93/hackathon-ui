@@ -24,12 +24,14 @@ export class ImageSectionComponent implements OnInit, OnChanges {
   public naturalImgHeight: any;
   public scaleWidthRatio: any;
   public scaleHeightRatio: any;
+  count : number =2;
 
   constructor() {
 
   }
 
-  @Output() xy: EventEmitter<any> = new EventEmitter();
+  @Output() xystart: EventEmitter<any> = new EventEmitter();
+  @Output() xyend: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {
 
@@ -71,13 +73,22 @@ export class ImageSectionComponent implements OnInit, OnChanges {
 
   }
 
-  @HostListener('document:mousemove', ['$event'])
-  onMouseMove(e) {
+  @HostListener('document:click', ['$event'])
+  click(e) {
     if (document.getElementById('image') && e.clientX < document.getElementById('image').clientWidth && e.clientY < document.getElementById('image').clientHeight) {
       var x = (e.clientX / this.width_ratio);
       var y = (e.clientY / this.height_ratio);
-      console.warn("Original X", Math.round(e.clientX) , "Original Y", Math.round(e.clientY) , "Scaled-X", Math.round(x * this.scaleWidthRatio), "Scaled-Y", Math.round(y * this.scaleHeightRatio));
-      this.xy.emit("Original X" + Math.round(e.clientX) + "," + "Original Y" + Math.round(e.clientY) + "****Scaled*****" + Math.round(x * this.scaleWidthRatio) + "&&&&" + Math.round(y * this.scaleHeightRatio));
+      if(this.count%2==0){
+        //console.log("start");
+      this.xystart.emit(Math.round(x * this.scaleWidthRatio) + "," + Math.round(y * this.scaleHeightRatio));
+      this.count++;
+      }else {
+        this.xyend.emit(Math.round(x * this.scaleWidthRatio) + "," + Math.round(y * this.scaleHeightRatio));
+        this.count++; 
+        //console.log("end"); 
+      }
+      //console.warn("Original X", Math.round(e.clientX) , "Original Y", Math.round(e.clientY) , "Scaled-X", Math.round(x * this.scaleWidthRatio), "Scaled-Y", Math.round(y * this.scaleHeightRatio));
+      //this.xy.emit("Original X" + Math.round(e.clientX) + "," + "Original Y" + Math.round(e.clientY) + "****Scaled*****" + Math.round(x * this.scaleWidthRatio) + "&&&&" + Math.round(y * this.scaleHeightRatio));
     }
   }
 }

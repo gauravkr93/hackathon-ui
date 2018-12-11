@@ -1,16 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="row">
   <div id="mydiv" class="col-lg-6 col-md-6 brdr-img">
-    <app-image-section  class="image" [imgURL]="imgURL" [imgHeight]="imgHeight" [imgWidth]="imgWidth" (xy)="value($event)"></app-image-section>
+    <app-image-section  class="image" [imgURL]="imgURL" [imgHeight]="imgHeight" [imgWidth]="imgWidth" (xyend)="valueend($event)" (xystart)="valuestart($event)"></app-image-section>
   </div>
   <div class="col-lg-6 col-md-6">
     <h1>
-      Welcome to {{ title }}!{{x}}
+      Welcome to {{ title }}!{{x}} {{rendereddata}}
     </h1>
 
     <h3 style="text-align:left">Angular 7 Image Preview before Upload:</h3>
     <span style="color:red;text-align:left" *ngIf="message">{{message}}</span>
     <input #file id="photo" type="file" accept='image/*' (change)="preview(file.files)" />
-    {{x}}<div id="coord"></div>
+    <input type="submit" value="Magic!!!!" *ngIf="buttonhide" (click)="getData()">
+    <div id="dynamic-form">
+    </div>
   </div>
 </div>
