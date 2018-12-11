@@ -1,28 +1,3 @@
 <div (document:mousemove)="onMouseMove($event)">
-        <img id="image" [src]="imgURL" width=500 height=500 class="brdr-img" *ngIf="imgURL">
+    <img id="image" [src]="imgURL" width="{{imgReWidth}}" height="{{imgReHeight}}" class="brdr-img" *ngIf="imgURL">
 </div>
-   <!-- <head>
-        <title>X, Y Coordinates using jQuery</title>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    </head>
-    <body>
-        <div style="width:300px;">
-            <div><img id="image" [src]="imgURL" class="brdr-img" *ngIf="imgURL"></div>
-            <div style="padding-top:20px;">
-                
-            </div>
-        </div>
-    </body>
-  {{width}}{{height}}
-
-<script>
-    $(document).ready(function() {
-        $('image').on("mousemove", function(e) {
-            var offset = $(this).offset();
-            var X = (e.pageX - offset.left);
-            var Y = (e.pageY - offset.top);
-            $('#coord').text('X: ' + X + ', Y: ' + Y);
-        });
-    });
-</script>
-</div>-->

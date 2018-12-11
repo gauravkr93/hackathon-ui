@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +15,11 @@ export class AppComponent {
   y:any;
   imgWidth:any;
   imgHeight:any;
- 
+  
   preview(files) {
     if (files.length === 0)
       return;
- 
+    
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Only images are supported.";
@@ -33,7 +34,15 @@ export class AppComponent {
     }
   }
 
+  getResizeWidth(event: any){
+    console.warn("Resize width ",event*100);
+    //document.getElementById("myDiv").style.width = event*100+"%";
+  }
   
+  getResizeHeight(event: any){
+    console.warn("Resize height ",event*100);
+  }
+
   value(xyval: any) {
     this.x=xyval;
 
