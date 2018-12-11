@@ -6,6 +6,7 @@ import { Component, OnInit, Input, HostListener, EventEmitter, Output, OnChanges
   styleUrls: ['./image-section.component.css']
 })
 export class ImageSectionComponent implements OnInit, OnChanges {
+
   @Input('imgURL') imgURL: string;
   @Input('imgWidth') imgWidth: string;
   @Input('imgHeight') imgHeight: string;
@@ -21,13 +22,15 @@ export class ImageSectionComponent implements OnInit, OnChanges {
   public imgReHeight: any;
   public natualImgWidth: any;
   public naturalImgHeight: any;
+  public scaleWidthRatio: any;
+  public scaleHeightRatio: any;
 
   constructor() {
 
   }
+
   @Output() xy: EventEmitter<any> = new EventEmitter();
-  @Output() resizeWidth: EventEmitter<any> = new EventEmitter();
-  @Output() resizeHeight: EventEmitter<any> = new EventEmitter();
+
   ngOnInit() {
 
   }
@@ -49,35 +52,31 @@ export class ImageSectionComponent implements OnInit, OnChanges {
       this.width = document.getElementById('image').clientWidth;
       this.height = document.getElementById('image').clientHeight;
 
-      this.width_ratio = this.natualImgWidth / 500;
-      this.height_ratio = this.naturalImgHeight / 500;
+      this.width_ratio = this.width / 500;
+      this.height_ratio = this.height / 500;
 
-      console.warn("natural dimenstions ",this.natualImgWidth, this.naturalImgHeight);
-      console.warn("Width", this.width, "Ratio ",this.width_ratio);
+      this.scale_width = 500 / this.natualImgWidth;
+      this.scale_height = 500 / this.naturalImgHeight;
 
-      this.scale_width = 500 / this.width;
-      this.scale_height = 500 / this.height;
+      this.scaleWidthRatio = this.natualImgWidth / 500;
+      this.scaleHeightRatio = this.naturalImgHeight / 500;
 
       this.scale = Math.min(this.scale_width, this.scale_height);
 
-      this.imgReWidth = this.width * this.scale; 
-      this.imgReHeight = this.height * this.scale;  
+      this.imgReWidth = this.natualImgWidth * this.scale;
+      this.imgReHeight = this.naturalImgHeight * this.scale;
 
-      console.warn("Image ratio ", this.imgReWidth, this.imgReHeight);
     }
-
-    //this.resizeWidth.emit(this.width / this.viewWidth);
-    //this.resizeHeight.emit(this.height / this.viewHeight);
 
   }
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(e) {
-    if (e.clientX < document.getElementById('image').clientWidth && e.clientY < document.getElementById('image').clientHeight) {
+    if (document.getElementById('image') && e.clientX < document.getElementById('image').clientWidth && e.clientY < document.getElementById('image').clientHeight) {
       var x = (e.clientX / this.width_ratio);
       var y = (e.clientY / this.height_ratio);
-      console.warn("X",x,"Y",y,"Original-X",Math.round(e.clientX),"Original-Y",Math.round(e.clientY),"Scaled-X",Math.round(e.clientX * this.width_ratio), "Scaled-Y",Math.round(e.clientY * this.height_ratio));
-      this.xy.emit(x + "," + y + "**********" + document.getElementById('image').clientWidth + "&&&&" + document.getElementById('image').clientHeight)
+      console.warn("Original X", Math.round(e.clientX) , "Original Y", Math.round(e.clientY) , "Scaled-X", Math.round(x * this.scaleWidthRatio), "Scaled-Y", Math.round(y * this.scaleHeightRatio));
+      this.xy.emit("Original X" + Math.round(e.clientX) + "," + "Original Y" + Math.round(e.clientY) + "****Scaled*****" + Math.round(x * this.scaleWidthRatio) + "&&&&" + Math.round(y * this.scaleHeightRatio));
     }
   }
 }
