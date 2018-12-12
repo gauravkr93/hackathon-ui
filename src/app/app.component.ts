@@ -26,6 +26,13 @@ export class AppComponent {
   count:number=0;
   valueCount: number=0;
   buttonhide:boolean=false;
+  showMl:boolean=false;
+  showDynForm:boolean=false;
+  merchant:any;
+  category:any;
+  date:any;
+  total:any;
+  mlButtonFlag:boolean=false;
 
   preview(files) {
     if (files.length === 0)
@@ -48,6 +55,7 @@ export class AppComponent {
       this.http.post("http://35.229.106.36:5000/upload/"+this.filename+".jpg",uploadData).subscribe(
         (data:any) => {
           console.log(data);
+          this.mlButtonFlag=true;
         });
     }
   }
@@ -76,7 +84,26 @@ export class AppComponent {
     console.warn(event);
   }
 
+  machineL(){
+    this.http.get("http://35.229.106.36:5000/ml/"+this.filename+".jpg")
+    .subscribe((res:any)=>{
+      console.log(res);
+      this.showMl=true;
+      // document.getElementById("category").setAttribute("value",res.category);
+      // document.getElementById("merchant").setAttribute("value",res.org);
+      // document.getElementById("date").setAttribute("value",res.date);
+      // document.getElementById("total").setAttribute("value",res.total);
+      this.category=res.category;
+      this.merchant=res.org;
+      this.date=res.date;
+      this.total=res.total;
+      
+
+    });
+  }
+
   getData(){
+    this.showDynForm=true;
     this.http.get("http://35.229.106.36:5000/get_text/"+this.filename+".jpg/"+this.startx+"/"+this.starty+"/"+this.endx+"/"+this.endy)
     .subscribe(
       (res:any) => {
@@ -116,9 +143,9 @@ export class AppComponent {
         div1.className = "col-lg-1 col-md-1"
         cont.appendChild(div1);
         el = document.createElement("input");
-        el.className = "btn-delete";
+        el.className = "btn btn-danger";
         el.style.textAlign = 'center';
-        el.type = "submit";
+        el.type = "button";
         el.id = "delete-value-"+this.valueCount;
         el.value = "-";
         el.addEventListener('click', (event:any) =>  {

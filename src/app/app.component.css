@@ -28,6 +28,14 @@
     text-align: left;
 }
 
+.btn-marg{
+    margin-right: 10px;
+}
+
+.hide-ele{
+    display: none;
+}
+
 input[type="file"] {
     display: none;
 }
