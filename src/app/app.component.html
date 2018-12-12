@@ -1,7 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="row">
   <div id="mydiv" class="col-lg-6 col-md-6 brdr-img">
-    <app-image-section  class="image" [imgURL]="imgURL" [imgHeight]="imgHeight" [imgWidth]="imgWidth" (xyend)="valueend($event)" (xystart)="valuestart($event)"></app-image-section>
+    <app-image-section class="image" [imgURL]="imgURL" [imgHeight]="imgHeight" [imgWidth]="imgWidth" (xyend)="valueend($event)"
+      (xystart)="valuestart($event)"></app-image-section>
   </div>
   <div class="col-lg-6 col-md-6 customize">
     <h1 class="headercolor">
@@ -10,52 +11,55 @@
     <h3 style="text-align:left" class="fnt">Upload file for Processing:</h3>
     <!--<span style="color:red;text-align:left" *ngIf="message">{{message}}</span>-->
     <label class="custom-file-upload btn-marg">
-    <input #file id="photo" class="file-upload-button" type="file" accept='image/*' (change)="preview(file.files)" />
-    Upload
+      <input #file id="photo" class="file-upload-button" type="file" accept='image/*' (change)="preview(file.files)" />
+      Upload
     </label>
     <label class="custom-file-upload btn-marg" *ngIf="buttonhide">
-    <input type="submit" value="Magic!!!!" class="hide-ele"  (click)="getData()">
-    Magic!!!!
-  </label>
-  <label class="custom-file-upload" *ngIf="mlButtonFlag">
-      <input type="submit" value="Magic!!!!" class="hide-ele"  (click)="machineL()">
+      <input type="submit" value="Magic!!!!" class="hide-ele" (click)="getData()">
+      Magic!!!!
+    </label>
+    <label class="custom-file-upload" *ngIf="mlButtonFlag">
+      <input type="submit" value="Magic!!!!" class="hide-ele" (click)="machineL()">
       ML Magic!!!!
     </label>
 
     <div id="ml-section" *ngIf="showMl">
-        <div class="row">
-          <div class="col-lg-1 col-md-1"></div>
-          <p class="col-lg-3 col-md-3">Category</p>
-          <div class="col-lg-1 col-md-1"></div>
-          <input id="category" type="text" class="col-lg-3 col-md-3" value="{{category}}">
-        </div>
-
-        <div class="row">
-            <div class="col-lg-1 col-md-1"></div>
-            <p class="col-lg-3 col-md-3">Merchant</p>
-            <div class="col-lg-1 col-md-1"></div>
-            <input id="merchant" type="text" class="col-lg-3 col-md-3" value="{{merchant}}">
-          </div>
-
-          <div class="row">
-              <div class="col-lg-1 col-md-1"></div>
-              <p class="col-lg-3 col-md-3">Date</p>
-              <div class="col-lg-1 col-md-1"></div>
-              <input id="date" type="text" class="col-lg-3 col-md-3" value="{{date}}">
-            </div>
-
-            <div class="row">
-                <div class="col-lg-1 col-md-1"></div>
-                <p class="col-lg-3 col-md-3">Total</p>
-                <div class="col-lg-1 col-md-1"></div>
-                <input id="total" type="text" class="col-lg-3 col-md-3" value="{{total}}">
-              </div>
+      <div class="row">
+        <div class="col-lg-1 col-md-1"></div>
+        <p class="col-lg-3 col-md-3">Category</p>
+        <div class="col-lg-1 col-md-1"></div>
+        <select id="category" class="col-lg-3 col-md-3">
+          <option *ngFor="let category of categories; let i=index" id="{{category}}" value="{{category}}">{{category}}</option>
+        </select>
+        <!---<input id="category" type="text" class="col-lg-3 col-md-3" value="{{category}}">-->
       </div>
 
-    <div id="dynamic-form" *ngIf="showDynForm">
-        <h3 style="text-align:center;font-weight: bolder;" class="fnt">DYNAMIC FORM</h3>
+      <div class="row">
+        <div class="col-lg-1 col-md-1"></div>
+        <p class="col-lg-3 col-md-3">Merchant</p>
+        <div class="col-lg-1 col-md-1"></div>
+        <input id="merchant" type="text" class="col-lg-3 col-md-3" value="{{merchant}}">
+      </div>
+
+      <div class="row">
+        <div class="col-lg-1 col-md-1"></div>
+        <p class="col-lg-3 col-md-3">Date</p>
+        <div class="col-lg-1 col-md-1"></div>
+        <input id="date" type="text" class="col-lg-3 col-md-3" value="{{date}}">
+      </div>
+
+      <div class="row">
+        <div class="col-lg-1 col-md-1"></div>
+        <p class="col-lg-3 col-md-3">Total</p>
+        <div class="col-lg-1 col-md-1"></div>
+        <input id="total" type="text" class="col-lg-3 col-md-3" value="{{total}}">
+      </div>
     </div>
-    
+
+    <div id="dynamic-form" *ngIf="showDynForm">
+      <h3 style="text-align:center;font-weight: bolder;" class="fnt">DYNAMIC FORM</h3>
+    </div>
+
 
   </div>
 </div>
