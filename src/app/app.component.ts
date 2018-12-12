@@ -35,7 +35,7 @@ export class AppComponent {
   mlButtonFlag: boolean = false;
 
   constructor(private http: HttpClient) {
-    this.categories = ['Flight', 'Healthcare', 'Medicine', 'Hotel', 'Food', 'Stationery'];
+    this.categories = ['Flight', 'Healthcare', 'Hotel', 'Food', 'Stationery'];
   }
 
   preview(files) {
