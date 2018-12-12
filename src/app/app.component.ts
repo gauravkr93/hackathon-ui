@@ -73,7 +73,7 @@ export class AppComponent {
   }
 
   delete(event:any) {
-    console.log(event);
+    console.warn(event);
   }
 
   getData(){
@@ -83,12 +83,24 @@ export class AppComponent {
         this.valueCount++;
         if(this.count%2==0){
         this.rendereddata = res.data;
+        var div = document.createElement("div");
+        div.className = "row custom-row";
+        var cont = document.getElementById("dynamic-form");
+        div.id= "form-div-"+this.valueCount;
+        cont.appendChild(div);
+        div.style.margin = '10px';
+        var div2 = document.createElement("div");
+        div2.className = "col-lg-1 col-md-1"
+        div.appendChild(div2);
         var el = document.createElement("input");
         el.type = "text";
         el.id = "form-text-"+this.valueCount;
+        el.className = "col-lg-3 col-md-3";
         el.value= res.data;
-        var cont = document.getElementById("dynamic-form");
-        cont.appendChild(el);
+        div.appendChild(el);
+        var div1 = document.createElement("div");
+        div1.className = "col-lg-1 col-md-1"
+        div.appendChild(div1);
         this.count++;
         } else {
         this.rendereddata = res.data;
@@ -97,19 +109,25 @@ export class AppComponent {
         el.type = "text";
         el.id = "form-value-"+this.valueCount;
         el.value= res.data;
-        var cont = document.getElementById("dynamic-form");
+        el.className = "col-lg-3 col-md-3";
+        var cont = document.getElementById("form-div-"+(this.valueCount-1));
         cont.appendChild(el);
+        var div1 = document.createElement("div");
+        div1.className = "col-lg-1 col-md-1"
+        cont.appendChild(div1);
         el = document.createElement("input");
         el.type = "submit";
         el.id = "delete-value-"+this.valueCount;
         el.value = "delete";
-        el.click = function(){
-          console.log("123");
-        };
+        el.addEventListener('click', (event:any) =>  document.getElementById(event.srcElement.id).remove());
+        el.className = "col-lg-1 col-md-1";
         cont.appendChild(el);
-        cont.appendChild(document.createElement("br"));
+        //cont.appendChild(document.createElement("br"));
         this.count++;
         }
+
+        //styling
+        
 
       }
     )

@@ -2,3 +2,44 @@
     width: 50%;
     margin:0 auto;
 }
+
+.fnt {
+    font-family : Bazar;
+}
+
+.customize {
+    height : 900px;
+    background-color: #FFF0CE;
+    border-left : 2px solid black;
+}
+
+.headercolor {
+    background-color: #83B4B3;
+    margin-top: 0px;
+    margin-left: -15px;
+    text-align: center;
+    height: 70px;
+    color : #383838;
+    padding-top: 15px;
+    font-weight: bolder;
+}
+
+.file-upload-button{
+    text-align: left;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    color : #FFF0CE;
+    background-color: #383838;
+}
+
+.custom-row {
+    margin-bottom : 20px;
+}
