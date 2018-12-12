@@ -73,6 +73,8 @@ export class ImageSectionComponent implements OnInit, OnChanges {
 
   }
 
+  
+
   @HostListener('document:click', ['$event'])
   click(e) {
     if (document.getElementById('image') && e.clientX < document.getElementById('image').clientWidth && e.clientY < document.getElementById('image').clientHeight) {

@@ -79,9 +79,9 @@ export class AppComponent {
     console.warn(event);
   }
 
-  ngAfterViewChecked(){
-    if(document.getElementById(this.category)){
-      document.getElementById(this.category).setAttribute('selected','true');
+  ngAfterViewChecked() {
+    if (document.getElementById(this.category)) {
+      document.getElementById(this.category).setAttribute('selected', 'true');
     }
   }
 
@@ -99,6 +99,11 @@ export class AppComponent {
         this.date = res.date;
         this.total = res.total;
       });
+  }
+
+  @HostListener('document:focus', ['$event'])
+  onFocus(e) {
+    console.warn("FOcus event called", e);
   }
 
   getData() {
