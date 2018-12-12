@@ -101,8 +101,7 @@ export class AppComponent {
       });
   }
 
-  @HostListener('document:focus', ['$event'])
-  onFocus(e) {
+  focusEle(e) {
     console.warn("FOcus event called", e);
   }
 
@@ -128,6 +127,9 @@ export class AppComponent {
             el.id = "form-text-" + this.valueCount;
             el.className = "col-lg-3 col-md-3";
             el.value = res.data;
+            el.addEventListener('focus', (event: any) => {
+              this.focusEle(event);
+            });
             div.appendChild(el);
             var div1 = document.createElement("div");
             div1.className = "col-lg-1 col-md-1"
@@ -154,6 +156,9 @@ export class AppComponent {
             el.value = "-";
             el.addEventListener('click', (event: any) => {
               document.getElementById('form-div-' + (Number(event.srcElement.id.split("-", 3)[2]) - 1).toString()).remove();
+            });
+            el.addEventListener('focus', (event: any) => {
+              this.focusEle(event);
             });
             el.className = "col-lg-1 col-md-1";
             cont.appendChild(el);
