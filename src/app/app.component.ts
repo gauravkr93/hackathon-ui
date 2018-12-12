@@ -52,15 +52,6 @@ export class AppComponent {
     }
   }
 
-  getResizeWidth(event: any){
-    console.warn("Resize width ",event*100);
-    //document.getElementById("myDiv").style.width = event*100+"%";
-  }
-  
-  getResizeHeight(event: any){
-    console.warn("Resize height ",event*100);
-  }
-
   valuestart(xyval: any) {
     this.startx=xyval.split(",",2)[0];
     this.starty=xyval.split(",",2)[1];
@@ -70,10 +61,6 @@ export class AppComponent {
     this.endx=xyval.split(",",2)[0];
     this.endy=xyval.split(",",2)[1];
     this.buttonhide=true;
-  }
-
-  delete(event:any) {
-    console.warn(event);
   }
 
   getData(){
@@ -129,10 +116,6 @@ export class AppComponent {
         //cont.appendChild(document.createElement("br"));
         this.count++;
         }
-
-        //styling
-        
-
       }
     )
   }
