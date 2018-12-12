@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener,ElementRef } from '@angular/core';
 import * as $ from 'jquery';
 import { HttpClient } from '@angular/common/http'
 
@@ -32,9 +32,11 @@ export class AppComponent {
   category: any;
   date: any;
   total: any;
+  name:any;
   mlButtonFlag: boolean = false;
+  lastStoredEvent:any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, protected elementRef: ElementRef) {
     this.categories = ['Flight', 'Healthcare', 'Medicine', 'Hotel', 'Food', 'Stationery'];
   }
 
@@ -98,11 +100,22 @@ export class AppComponent {
         this.merchant = res.org;
         this.date = res.date;
         this.total = res.total;
+        this.name = res.name;
       });
   }
 
   focusEle(e) {
-    console.warn("FOcus event called", e);
+    console.warn("FOcus event called", e.target.id);
+    this.lastStoredEvent=e.target.id;
+  }
+
+  assist(){
+    this.http.get("http://35.229.106.36:5000/get_text/" + this.filename + ".jpg/" + this.startx + "/" + this.starty + "/" + this.endx + "/" + this.endy)
+      .subscribe(
+        (res: any) => {
+          console.warn(res.data+"   "+this.lastStoredEvent);
+          (<HTMLInputElement>document.getElementById(this.lastStoredEvent)).value=res.data;
+        });
   }
 
   getData() {
@@ -119,8 +132,10 @@ export class AppComponent {
             div.id = "form-div-" + this.valueCount;
             cont.appendChild(div);
             div.style.marginBottom = '10px';
+            div.style.marginLeft= '0px';
             var div2 = document.createElement("div");
-            div2.className = "col-lg-1 col-md-1"
+            //div2.className = "col-lg-1 col-md-1"
+            //div2.style.paddingLeft='15px';
             div.appendChild(div2);
             var el = document.createElement("input");
             el.type = "text";
@@ -143,29 +158,29 @@ export class AppComponent {
             el.id = "form-value-" + this.valueCount;
             el.value = res.data;
             el.className = "col-lg-3 col-md-3";
+            el.addEventListener('focus', (event: any) => {
+              this.focusEle(event);
+            });
             var cont = document.getElementById("form-div-" + (this.valueCount - 1));
             cont.appendChild(el);
             var div1 = document.createElement("div");
             div1.className = "col-lg-1 col-md-1"
             cont.appendChild(div1);
-            el = document.createElement("input");
-            el.className = "btn btn-danger";
-            el.style.textAlign = 'center';
-            el.type = "button";
-            el.id = "delete-value-" + this.valueCount;
-            el.value = "-";
-            el.addEventListener('click', (event: any) => {
+            var el1 = document.createElement("input");
+            el1.className = "btn btn-danger";
+            el1.style.textAlign = 'center';
+            el1.type = "button";
+            el1.id = "delete-value-" + this.valueCount;
+            el1.value = "-";
+            el1.addEventListener('click', (event: any) => {
               document.getElementById('form-div-' + (Number(event.srcElement.id.split("-", 3)[2]) - 1).toString()).remove();
             });
-            el.addEventListener('focus', (event: any) => {
-              this.focusEle(event);
-            });
-            el.className = "col-lg-1 col-md-1";
-            cont.appendChild(el);
+            el1.className = "col-lg-1 col-md-1";
+            cont.appendChild(el1);
             //cont.appendChild(document.createElement("br"));
             this.count++;
           }
-        }
+      } 
       )
   }
 

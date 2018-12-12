@@ -55,3 +55,7 @@ input[type="file"] {
 .btn-delete{
     text-align: center;
 }
+
+.height-adjust{
+    height : 26px;
+}

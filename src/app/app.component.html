@@ -16,48 +16,55 @@
     </label>
     <label class="custom-file-upload btn-marg" *ngIf="buttonhide">
       <input type="submit" value="Magic!!!!" class="hide-ele" (click)="getData()">
-      Magic!!!!
+      Generate
     </label>
+    <label class="custom-file-upload btn-marg" *ngIf="buttonhide">
+        <input type="submit" value="Magic!!!!" class="hide-ele" (click)="assist()">
+        Assist
+      </label>
     <label class="custom-file-upload" *ngIf="mlButtonFlag">
       <input type="submit" value="Magic!!!!" class="hide-ele" (click)="machineL()">
-      ML Magic!!!!
+      ML Magic!!
     </label>
 
     <div id="ml-section" *ngIf="showMl">
+        <h3 style="text-align:left;font-weight: bolder;" class="fnt">AUTO GENERATED FORM</h3>
       <div class="row">
-        <div class="col-lg-1 col-md-1"></div>
         <p class="col-lg-3 col-md-3">Category</p>
         <div class="col-lg-1 col-md-1"></div>
-        <select id="category" class="col-lg-3 col-md-3">
+        <select id="category" class="col-lg-3 col-md-3 height-adjust">
           <option *ngFor="let category of categories; let i=index" id="{{category}}" value="{{category}}">{{category}}</option>
         </select>
         <!---<input id="category" type="text" class="col-lg-3 col-md-3" value="{{category}}">-->
       </div>
 
       <div class="row">
-        <div class="col-lg-1 col-md-1"></div>
+          <p class="col-lg-3 col-md-3">Name</p>
+          <div class="col-lg-1 col-md-1"></div>
+          <input id="name" type="text" class="col-lg-3 col-md-3" (focus)="focusEle($event)"  value="{{name}}">
+        </div>
+
+      <div class="row">
         <p class="col-lg-3 col-md-3">Merchant</p>
         <div class="col-lg-1 col-md-1"></div>
-        <input id="merchant" type="text" class="col-lg-3 col-md-3" value="{{merchant}}">
+        <input id="merchant" type="text" class="col-lg-3 col-md-3" (focus)="focusEle($event)"  value="{{merchant}}">
       </div>
 
       <div class="row">
-        <div class="col-lg-1 col-md-1"></div>
         <p class="col-lg-3 col-md-3">Date</p>
         <div class="col-lg-1 col-md-1"></div>
-        <input id="date" type="text" class="col-lg-3 col-md-3" value="{{date}}">
+        <input id="date" type="text" class="col-lg-3 col-md-3" (focus)="focusEle($event)" value="{{date}}">
       </div>
 
       <div class="row">
-        <div class="col-lg-1 col-md-1"></div>
         <p class="col-lg-3 col-md-3">Total</p>
         <div class="col-lg-1 col-md-1"></div>
-        <input id="total" type="text" class="col-lg-3 col-md-3" value="{{total}}">
+        <input id="total" type="text" class="col-lg-3 col-md-3" (focus)="focusEle($event)" value="{{total}}">
       </div>
     </div>
 
     <div id="dynamic-form" *ngIf="showDynForm">
-      <h3 style="text-align:center;font-weight: bolder;" class="fnt">DYNAMIC FORM</h3>
+      <h3 style="text-align:left;font-weight: bolder;" class="fnt">DYNAMIC FORM</h3>
     </div>
 
 
