@@ -79,6 +79,12 @@ export class AppComponent {
     console.warn(event);
   }
 
+  ngAfterViewChecked(){
+    if(document.getElementById(this.category)){
+      document.getElementById(this.category).setAttribute('selected','true');
+    }
+  }
+
   machineL() {
     this.http.get("http://35.229.106.36:5000/ml/" + this.filename + ".jpg")
       .subscribe((res: any) => {
@@ -92,10 +98,6 @@ export class AppComponent {
         this.merchant = res.org;
         this.date = res.date;
         this.total = res.total;
-
-        console.warn("here ", this.category);
-        document.getElementById(this.category).setAttribute('selected','selected');
-
       });
   }
 
