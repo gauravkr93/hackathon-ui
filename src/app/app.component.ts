@@ -60,15 +60,6 @@ export class AppComponent {
     }
   }
 
-  getResizeWidth(event: any){
-    console.warn("Resize width ",event*100);
-    //document.getElementById("myDiv").style.width = event*100+"%";
-  }
-  
-  getResizeHeight(event: any){
-    console.warn("Resize height ",event*100);
-  }
-
   valuestart(xyval: any) {
     this.startx=xyval.split(",",2)[0];
     this.starty=xyval.split(",",2)[1];
@@ -156,10 +147,6 @@ export class AppComponent {
         //cont.appendChild(document.createElement("br"));
         this.count++;
         }
-
-        //styling
-        
-
       }
     )
   }
