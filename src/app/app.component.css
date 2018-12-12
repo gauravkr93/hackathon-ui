@@ -43,3 +43,7 @@ input[type="file"] {
 .custom-row {
     margin-bottom : 20px;
 }
+
+.btn-delete{
+    text-align: center;
+}

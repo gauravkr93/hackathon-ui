@@ -88,7 +88,7 @@ export class AppComponent {
         var cont = document.getElementById("dynamic-form");
         div.id= "form-div-"+this.valueCount;
         cont.appendChild(div);
-        div.style.margin = '10px';
+        div.style.marginBottom = '10px';
         var div2 = document.createElement("div");
         div2.className = "col-lg-1 col-md-1"
         div.appendChild(div2);
@@ -116,10 +116,14 @@ export class AppComponent {
         div1.className = "col-lg-1 col-md-1"
         cont.appendChild(div1);
         el = document.createElement("input");
+        el.className = "btn-delete";
+        el.style.textAlign = 'center';
         el.type = "submit";
         el.id = "delete-value-"+this.valueCount;
-        el.value = "delete";
-        el.addEventListener('click', (event:any) =>  document.getElementById(event.srcElement.id).remove());
+        el.value = "-";
+        el.addEventListener('click', (event:any) =>  {
+          document.getElementById('form-div-'+(Number(event.srcElement.id.split("-",3)[2])-1).toString()).remove();
+        });
         el.className = "col-lg-1 col-md-1";
         cont.appendChild(el);
         //cont.appendChild(document.createElement("br"));
