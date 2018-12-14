@@ -35,9 +35,10 @@ export class AppComponent {
   name:any;
   mlButtonFlag: boolean = false;
   lastStoredEvent:any;
+  evenentry:boolean=false;
 
   constructor(private http: HttpClient, protected elementRef: ElementRef) {
-    this.categories = ['Flight', 'Healthcare', 'Medicine', 'Hotel', 'Food', 'Stationery'];
+    this.categories = ['Flight', 'Healthcare', 'Hotel', 'Food', 'Stationery','Laundry'];
   }
 
   preview(files) {
@@ -69,12 +70,14 @@ export class AppComponent {
   valuestart(xyval: any) {
     this.startx = xyval.split(",", 2)[0];
     this.starty = xyval.split(",", 2)[1];
+    this.evenentry=false;
   }
 
   valueend(xyval: any) {
     this.endx = xyval.split(",", 2)[0];
     this.endy = xyval.split(",", 2)[1];
     this.buttonhide = true;
+    this.evenentry=true;
   }
 
   delete(event: any) {
@@ -171,7 +174,7 @@ export class AppComponent {
             el1.style.textAlign = 'center';
             el1.type = "button";
             el1.id = "delete-value-" + this.valueCount;
-            el1.value = "-";
+            el1.value = "❌";
             el1.addEventListener('click', (event: any) => {
               document.getElementById('form-div-' + (Number(event.srcElement.id.split("-", 3)[2]) - 1).toString()).remove();
             });

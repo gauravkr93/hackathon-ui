@@ -6,9 +6,9 @@
   </div>
   <div class="col-lg-6 col-md-6 customize">
     <h1 class="headercolor">
-      CLICK AND FETCH
+      CLICK AND FETCH<p *ngIf="evenentry">.</p>
     </h1>
-    <h3 style="text-align:left" class="fnt">Upload file for Processing:</h3>
+    <h3 style="text-align:left" class="fnt">Choose File:</h3>
     <!--<span style="color:red;text-align:left" *ngIf="message">{{message}}</span>-->
     <label class="custom-file-upload btn-marg">
       <input #file id="photo" class="file-upload-button" type="file" accept='image/*' (change)="preview(file.files)" />
@@ -24,11 +24,11 @@
       </label>
     <label class="custom-file-upload" *ngIf="mlButtonFlag">
       <input type="submit" value="Magic!!!!" class="hide-ele" (click)="machineL()">
-      ML Magic!!
+      ML Magic
     </label>
 
     <div id="ml-section" *ngIf="showMl">
-        <h3 style="text-align:left;font-weight: bolder;" class="fnt">AUTO GENERATED FORM</h3>
+        <h3 style="text-align:left;font-weight: bolder;" class="fnt">Fusion Mandatory Fields</h3>
       <div class="row">
         <p class="col-lg-3 col-md-3">Category</p>
         <div class="col-lg-1 col-md-1"></div>
@@ -64,7 +64,7 @@
     </div>
 
     <div id="dynamic-form" *ngIf="showDynForm">
-      <h3 style="text-align:left;font-weight: bolder;" class="fnt">DYNAMIC FORM</h3>
+      <h3 style="text-align:left;font-weight: bolder;" class="fnt">Itemized Breakdown</h3>
     </div>
 
 
